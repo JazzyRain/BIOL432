@@ -1,13 +1,30 @@
 ---
+#Project Info
 title: "Week3"
 author: "Rain Zhu"
 date: "29/01/2021"
+link: https://github.com/JazzyRain/BIOL432
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+knitr::opts_chunk$set(echo = TRUE)## used for knitting relating to output
+
+MyData<-read.csv("./InputData/FallopiaData.csv",header=T) #import data 
+library(dplyr)#load dplyr
+MyData<-MyData[!(MyData$Total<60),]## for my data, do not include data of which the "Total" is less than 60
+MyData# check MyData
+MyData<-select(MyData, Total, Taxon, Scenario, Nutrients)##Select the dataframe MyData and only show Total, Taxon, Scenario and nutrients the variables are automatically arranged in order of code inputed
+MyData$Total<-MyData$Total/1000
+MyData<-rename(MyData,TotalG=Total)
+MyData
+
+  
+my.function<-function(vec,str){
+  if(vec)
+}
+
+```  
 
 ## R Markdown
 
@@ -16,7 +33,7 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r cars}
-summary(cars)
+
 ```
 
 ## Including Plots
