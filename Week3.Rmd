@@ -3,13 +3,14 @@
 title: "BIOL432 Week3"
 author: "Rain Zhu"
 date: "29/01/2021"
-link: https://github.com/JazzyRain/BIOL432
 output: html_document
 ---
+[Rain's Github](https://github.com/JazzyRain/BIOL432/)
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)## used for knitting relating to output
 
-```  
+``` 
 ## Data Setup
 ```{r}
 
@@ -39,15 +40,21 @@ kable(MyData) # show MyData
   
  Finally, save new data as "WrangledData.csv" in the Output folder 
 ```{r}
-
+####import custom function
   source("./InputData/CustomFun.R")#Load custom function (CustomFun.R) from InputData 
+
+
 
 MyData<-mutate(MyData,Number.of.Observation.in.Taxon=my.function(var1=MyData$Taxon,X="Observation"))
 #make a new column with the mutate() function, within the column, we will use our custom function to determine the number of observation in Taxon
 
 
+
+###set new variables for Nutrient categories
 High<-MyData[(MyData$Nutrients=="high"),]## create new variable that represent all entries for high nutrients
 Low<-MyData[(MyData$Nutrients=="low"),]## create new variable that represent all entries for low nutrients
+
+
 
 
 MyData<-mutate(MyData,Average.TotalG.High.Nutrients=my.function(var1=High$TotalG,X="Average"))#use mutate() for new column, and use custom function along with High variable to input the average total(g) for high nutrients

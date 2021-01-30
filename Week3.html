@@ -379,6 +379,7 @@ summary {
 </div>
 
 
+<p><a href="https://github.com/JazzyRain/BIOL432/">Rain’s Github</a></p>
 <div id="data-setup" class="section level2">
 <h2>Data Setup</h2>
 <pre class="r"><code>MyData&lt;-read.csv(&quot;./InputData/FallopiaData.csv&quot;,header=T) #import data 
@@ -1831,14 +1832,21 @@ kable(MyData) # show MyData</code></pre>
 <li>Calculate the average Total(g) for each of the 2 Nutrient concentrations</li>
 </ol>
 <p>Finally, save new data as “WrangledData.csv” in the Output folder</p>
-<pre class="r"><code>  source(&quot;./InputData/CustomFun.R&quot;)#Load custom function (CustomFun.R) from InputData 
+<pre class="r"><code>####import custom function
+  source(&quot;./InputData/CustomFun.R&quot;)#Load custom function (CustomFun.R) from InputData 
+
+
 
 MyData&lt;-mutate(MyData,Number.of.Observation.in.Taxon=my.function(var1=MyData$Taxon,X=&quot;Observation&quot;))
 #make a new column with the mutate() function, within the column, we will use our custom function to determine the number of observation in Taxon
 
 
+
+###set new variables for Nutrient categories
 High&lt;-MyData[(MyData$Nutrients==&quot;high&quot;),]## create new variable that represent all entries for high nutrients
 Low&lt;-MyData[(MyData$Nutrients==&quot;low&quot;),]## create new variable that represent all entries for low nutrients
+
+
 
 
 MyData&lt;-mutate(MyData,Average.TotalG.High.Nutrients=my.function(var1=High$TotalG,X=&quot;Average&quot;))#use mutate() for new column, and use custom function along with High variable to input the average total(g) for high nutrients
