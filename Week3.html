@@ -379,8 +379,8 @@ summary {
 </div>
 
 
-<div id="remove-data-for-which-the-total-is-less-than-60" class="section level2">
-<h2>Remove Data For Which the “Total” is less than 60</h2>
+<div id="data-setup" class="section level2">
+<h2>Data Setup</h2>
 <pre class="r"><code>MyData&lt;-read.csv(&quot;./InputData/FallopiaData.csv&quot;,header=T) #import data 
 library(dplyr)#load dplyr</code></pre>
 <pre><code>## 
@@ -391,6 +391,9 @@ library(dplyr)#load dplyr</code></pre>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
+</div>
+<div id="remove-data-for-which-the-total-is-less-than-60" class="section level2">
+<h2>Remove Data For Which the “Total” is less than 60</h2>
 <pre class="r"><code>MyData&lt;-MyData[!(MyData$Total&lt;60),]## Exclude data of which the &quot;Total&quot; is &lt; than 60
 library(knitr)##load knitr
 kable(MyData,caption=&quot;Fallopia Dataset&quot;)# show MyData</code></pre>
@@ -1827,7 +1830,7 @@ kable(MyData) # show MyData</code></pre>
 <li>Count the total number of observation in the Taxon Column</li>
 <li>Calculate the average Total(g) for each of the 2 Nutrient concentrations</li>
 </ol>
-<p>finally, save new data as “WrangledData.csv” in the Output folder</p>
+<p>Finally, save new data as “WrangledData.csv” in the Output folder</p>
 <pre class="r"><code>  source(&quot;./InputData/CustomFun.R&quot;)#Load custom function (CustomFun.R) from InputData 
 
 MyData&lt;-mutate(MyData,Number.of.Observation.in.Taxon=my.function(var1=MyData$Taxon,X=&quot;Observation&quot;))

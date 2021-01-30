@@ -10,11 +10,14 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)## used for knitting relating to output
 
 ```  
-## Remove Data For Which the "Total" is less than 60 
+## Data Setup
 ```{r}
 
 MyData<-read.csv("./InputData/FallopiaData.csv",header=T) #import data 
 library(dplyr)#load dplyr
+```
+## Remove Data For Which the "Total" is less than 60 
+```{r}
 MyData<-MyData[!(MyData$Total<60),]## Exclude data of which the "Total" is < than 60
 library(knitr)##load knitr
 kable(MyData,caption="Fallopia Dataset")# show MyData
@@ -34,7 +37,7 @@ kable(MyData) # show MyData
   1. Count the total number of observation in the Taxon Column 
   2. Calculate the average Total(g) for each of the 2 Nutrient concentrations
   
- finally, save new data as "WrangledData.csv" in the Output folder 
+ Finally, save new data as "WrangledData.csv" in the Output folder 
 ```{r}
 
   source("./InputData/CustomFun.R")#Load custom function (CustomFun.R) from InputData 
