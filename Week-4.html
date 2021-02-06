@@ -383,7 +383,7 @@ summary {
 <p><a href="https://github.com/JazzyRain/BIOL432/">Rain’s Github</a></p>
 <div id="data-setup" class="section level2">
 <h2>Data setup</h2>
-<pre class="r"><code>MData&lt;-read.csv(&quot;./InputData/measurements.csv&quot;,header=T) #import data 
+<pre class="r"><code>MData&lt;-read.csv(&quot;./InputData/measurements.csv&quot;,header=T) #import data and set object as MData
 library(dplyr)#load dplyr</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
@@ -394,13 +394,15 @@ library(dplyr)#load dplyr</code></pre>
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
 </div>
-<div id="creation-of-sp" class="section level2">
-<h2>Creation of Sp</h2>
-<p>Adding a new column called sp with dplyr command and shorten the genus name in Organism column to only the first letter and period with regex</p>
+<div id="creation-of-sp-column" class="section level2">
+<h2>Creation of “Sp” Column</h2>
+<p>Adding a new column called sp with dplyr command and shorten the genus name in Organism column to show only the first letter and period with regex</p>
 <pre class="r"><code>MData&lt;-mutate(MData, Sp=sub(&quot;(\\w)\\w+&quot;,&quot;\\1.&quot;,MData$Organism))
-kable(MData,caption=&quot;Fallopia Dataset&quot;)# show MyData</code></pre>
+##In MData, I used mutate to setup a new column called sp. 
+##values from sp are taken from &quot;Organism&quot;.(\\w)\\w+ is capturing the first letter of an entire word. the sub function lets me to act only on the first word. \\1. is outputting the first capture which is (\\w) hence, the first letter + &quot;.&quot; and the rest of the string (the species name)
+
+kable(MData)# show MyData with kaple function for neater look </code></pre>
 <table>
-<caption>Fallopia Dataset</caption>
 <thead>
 <tr class="header">
 <th align="left">Organism</th>
@@ -431,8 +433,8 @@ kable(MData,caption=&quot;Fallopia Dataset&quot;)# show MyData</code></pre>
 <div id="organism--sp" class="section level2">
 <h2>Organism-&gt; Sp</h2>
 <p>Use dplyr to create a new dataset with Sp replacing the Organism column and moved to the beginning in place of the original organism column</p>
-<pre class="r"><code>MData&lt;-select(MData,Sp, Limb.width, Limb.length, Observer)
-kable(MData)</code></pre>
+<pre class="r"><code>MData&lt;-select(MData,Sp, Limb.width, Limb.length, Observer) ##using select() I got rid of &quot;Organism&quot; and sorted all columns in the desired arrangement
+kable(MData)##output MData with kable() for neater look</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -460,7 +462,7 @@ kable(MData)</code></pre>
 </div>
 <div id="save-dataset" class="section level2">
 <h2>Save dataset</h2>
-<pre class="r"><code>write.csv(MData,&quot;./Output/WrangledData.csv&quot;)#save new csv file in the Output file</code></pre>
+<pre class="r"><code>write.csv(MData,&quot;./Output/MeasShort.csv&quot;)#save new csv file in the Output folder</code></pre>
 </div>
 
 
