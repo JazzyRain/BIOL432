@@ -1,0 +1,49 @@
+---
+#Project Info
+title: "Regex"
+author: "Rain Zhu"
+date: "05/02/2021"
+output: html_document
+---
+[Rain's Github](https://github.com/JazzyRain/BIOL432/)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+```
+
+## Data setup
+
+```{r}
+MData<-read.csv("./InputData/measurements.csv",header=T) #import data 
+library(dplyr)#load dplyr
+
+```
+
+## Creation of Sp
+
+Adding a new column called sp with dplyr command and shorten the genus name in Organism column to only the first letter and period with regex
+
+```{r}
+MData<-mutate(MData, Sp=sub("(\\w)\\w+","\\1.",MData$Organism))
+kable(MData,caption="Fallopia Dataset")# show MyData
+```
+## Organism-> Sp
+Use dplyr to create a new dataset with Sp replacing the Organism column and moved to the beginning in place of the original organism column
+```{r}
+MData<-select(MData,Sp, Limb.width, Limb.length, Observer)
+kable(MData)
+```
+## Save dataset
+```{r}
+write.csv(MData,"./Output/WrangledData.csv")#save new csv file in the Output file
+```
+
+
+
+
+
+
+
+
+
